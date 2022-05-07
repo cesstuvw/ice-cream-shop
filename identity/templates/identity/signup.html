@@ -1,0 +1,376 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sign up | Freeze</title>
+
+    <!-- FONTS  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="http://fonts.cdnfonts.com/css/stretch-pro" rel="stylesheet" />
+
+    <!-- BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <!-- REMIX ICON -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <!-- WEBSITE ICON -->
+    <link rel="icon" href="{% static 'icingshop/images/icon.png' %}" />
+
+    <style>
+      @font-face {
+        src: url(..fonts/Akira\ Expanded\ Demo.otf);
+        font-family: Akira;
+      }
+
+      @font-face {
+        src: url(..fonts/stretch-pro.basic.ttf);
+        font-family: Stretch-Basic;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      ::-webkit-scrollbar {
+        background-color: transparent;
+        width: 0.5em;
+      }
+
+      ::-webkit-scrollbar-track {
+        background-color: transparent;
+        border-radius: 25px;
+        margin-block: 0.5em;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: #008762;
+        border-radius: 25px;
+      }
+
+      :root {
+        --banner-bg-color: #f7c6d1;
+        --dark-text-color: #111;
+        --light-text-color: #fff;
+        --c-dark-pink-color: #ff8aa4;
+        --c-light-pink-color: #f7c6d1;
+        --c-dark-green-color: #008762;
+        --c-light-green-color: #c0e8dd;
+        --c-light-gray-color: #d3d5ea;
+      }
+
+      ::-moz-selection {
+        /* Code for Firefox */
+        color: var(--c-dark-green-color);
+        background: var(--c-dark-pink-color);
+      }
+
+      ::selection {
+        color: var(--c-dark-green-color);
+        background: var(--c-light-pink-color);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        /* font-family: "Stretch Pro"; */
+      }
+
+      body {
+        font-family: "Stretch Pro";
+        font-weight: 300;
+      }
+
+      /*  <!--------------------------------- START NAVBAR --------------------------------------------> */
+      .navbar-brand {
+        font-family: "Stretch Pro";
+        text-transform: uppercase;
+        font-size: 1.5em !important;
+        color: var(--light-text-color) !important;
+      }
+
+      .navbar-nav .nav-item a {
+        color: var(--light-text-color) !important;
+        font-family: "Stretch Pro" !important;
+        text-transform: uppercase;
+      }
+
+      .navbar-toggler {
+        color: transparent;
+      }
+      /*  <!--------------------------------- END NAVBAR --------------------------------------------> */
+
+      /*  <!--------------------------------- START SIGN UP FORM --------------------------------------------> */
+      input:not(.form-check-input) {
+        font-family: "Manrope" !important;
+        font-weight: 700 !important;
+        text-transform: lowercase;
+        border-radius: 0.7em !important;
+        padding-top: 0.6em;
+        padding-bottom: 0.6em;
+        padding-left: 1.3em;
+        padding-right: 1.3em;
+        /* padding: 0, 1.3em, 0, 1.3em; */
+        border-color: transparent;
+        /* background-color: #e8f0fe; */
+        background-color: var(--c-light-green-color);
+        color: var(--c-dark-green-color) !important;
+      }
+
+      ::placeholder {
+        font-weight: 700 !important;
+        color: var(--c-dark-green-color) !important;
+      }
+
+      :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: var(--c-dark-green-color) !important;
+      }
+
+      ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: var(--c-dark-green-color) !important;
+      }
+
+      .btn {
+        padding-top: 0.5em !important;
+        padding-bottom: 0.5em !important;
+        border-radius: 0.7em !important;
+        font-family: "Stretch Pro" !important;
+        text-transform: lowercase !important;
+        background-color: var(--c-dark-green-color) !important;
+        color: var(--light-text-color) !important;
+        align-self: center !important;
+      }
+
+      .btn:hover {
+        background-color: var(--c-light-pink-color) !important;
+        color: var(--c-dark-green-color) !important;
+      }
+
+      .title-form {
+        font-family: "Stretch Pro";
+        text-transform: uppercase;
+        margin-top: 6em;
+        color: var(--c-dark-green-color);
+      }
+
+      .dialog-signup {
+        font-family: "Manrope";
+        font-weight: 400;
+        color: var(--c-dark-green-color);
+      }
+
+      a {
+        font-weight: 700;
+        color: var(--c-dark-green-color) !important;
+        text-decoration: none !important;
+      }
+
+      .dialog-signup a:hover {
+        color: var(--c-dark-pink-color) !important;
+      }
+
+      .form-container {
+        height: 100vh;
+      }
+      /*  <!--------------------------------- END SIGN UP FORM --------------------------------------------> */
+
+      /*  <!--------------------------------- START FOOTER --------------------------------------------> */
+      footer {
+        clear: both;
+        background-color: var(--c-light-green-color);
+        color: var(--c-dark-green-color);
+      }
+
+      .text-footer {
+        font-family: "Stretch Pro";
+        text-transform: uppercase;
+      }
+
+      .text-footer-middle {
+        font-family: "Manrope";
+      }
+
+      /*  <!--------------------------------- END FOOTER --------------------------------------------> */
+
+      /*  <!--------------------------------- MEDIA QUERIES --------------------------------------------> */
+      /* x-large */
+      @media (min-width: 1200px) {
+      }
+
+      /* large */
+      @media (min-width: 992px) and (max-width: 1199px) {
+      }
+
+      /* medium */
+      @media (min-width: 768px) and (max-width: 991px) {
+      }
+
+      /* small */
+      @media (min-width: 576px) and (max-width: 767px) {
+        .text-footer h5,
+        .text-footer-middle p,
+        .text-footer ul {
+          text-align: start !important;
+        }
+      }
+
+      /* x-small */
+      @media (max-width: 575px) {
+        .text-footer h5,
+        .text-footer-middle p,
+        .text-footer ul {
+          text-align: start !important;
+        }
+
+        /* 
+  .navbar .navbar-brand,
+  .navbar-nav .navbar-user,
+  .navbar-nav .navbar-cart {
+    padding: 0 !important;
+    margin: 0 !important;
+  } */
+
+        /* not yet fixed */
+        /* glaxy fold */
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg justify-content-end"
+      style="background-color: #f5c2d1"
+    >
+      <div class="container-fluid mt-3 mb-3">
+        <a class="navbar-brand me-auto ps-4" href="#">Freeze</a>
+        <div class="text-end" id="navbarNav">
+          <ul class="navbar-nav navbar-main ms-auto pe-4">
+            {% comment %} <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'shop' %}"
+                >Shop Now</a
+              >
+            </li> {% endcomment %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="form-container container text-center justify-content-center align-item-center"
+    >
+      <div>
+        <h4 class="title-form text-center">Sign Up</h4>
+      </div>
+      <form method="post" class="p-5">
+        <div class="row justify-content-center">
+          <div class="col-xl-5 col-md-8">
+            <div class="form-outline mb-3 text-end">
+              {% csrf_token %} {% for field in form %}
+              {{ user_form.as_p }}
+              {{ profile_form.as_p }}
+
+              <h6 class="field-label pb-2">
+                {{ field.label_tag }} {{ field }} {% if field.help_text %}
+                <!-- <small style="color: grey"></small> -->
+                {% endif %} {% for error in field.errors %}
+              </h6>
+
+              <p style="color: red">{{ error }}</p>
+              {% endfor %} {% endfor %}
+            </div>
+            <div class="align-self-center">
+              <button
+                type="submit"
+                class="btn col-12 col-lg-4 col-xl-12 col-sm-11 col-md-7"
+              >
+                Sign up
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="dialog-signup text-center pt-5">
+          <p>
+            Already have an account?&nbsp&nbsp<a href="{% url 'login' %}"
+              >Sign In</a
+            >
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <footer id="footer" class="d-flex justify-content-center align-item-center">
+      <div class="container-fluid ps-5 pe-5 mt-5 mb-5">
+        <div class="row">
+          <div
+            class="text-footer col-lg-4 col-md-4 mb-4 mb-md-0 text-start align-self-center"
+          >
+            <h5>Freeze</h5>
+          </div>
+          <div
+            class="text-footer-middle col-lg-4 col-md-4 mb-4 mb-md-0 mt text-center align-self-center"
+          >
+            <p>
+              All of the photographs and fonts used in this website are solely
+              for academic reasons.
+            </p>
+          </div>
+          <div
+            class="text-footer col-lg-4 col-md-4 mb-md-0 justify-content-center align-self-center"
+          >
+            <ul class="list-unstyled text-end">
+              <li>
+                <a href="#" class="text-white"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path
+                      d="M14 19h5V5H5v14h7v-5h-2v-2h2v-1.654c0-1.337.14-1.822.4-2.311A2.726 2.726 0 0 1 13.536 6.9c.382-.205.857-.328 1.687-.381.329-.021.755.005 1.278.08v1.9H16c-.917 0-1.296.043-1.522.164a.727.727 0 0 0-.314.314c-.12.226-.164.45-.164 1.368V12h2.5l-.5 2h-2v5zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"
+                      fill="rgba(0,135,98,1)"
+                    /></svg
+                ></a>
+                <a href="#" class="text-white"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path
+                      d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0-2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.25a1.25 1.25 0 0 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM12 4c-2.474 0-2.878.007-4.029.058-.784.037-1.31.142-1.798.332-.434.168-.747.369-1.08.703a2.89 2.89 0 0 0-.704 1.08c-.19.49-.295 1.015-.331 1.798C4.006 9.075 4 9.461 4 12c0 2.474.007 2.878.058 4.029.037.783.142 1.31.331 1.797.17.435.37.748.702 1.08.337.336.65.537 1.08.703.494.191 1.02.297 1.8.333C9.075 19.994 9.461 20 12 20c2.474 0 2.878-.007 4.029-.058.782-.037 1.309-.142 1.797-.331.433-.169.748-.37 1.08-.702.337-.337.538-.65.704-1.08.19-.493.296-1.02.332-1.8.052-1.104.058-1.49.058-4.029 0-2.474-.007-2.878-.058-4.029-.037-.782-.142-1.31-.332-1.798a2.911 2.911 0 0 0-.703-1.08 2.884 2.884 0 0 0-1.08-.704c-.49-.19-1.016-.295-1.798-.331C14.925 4.006 14.539 4 12 4zm0-2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2z"
+                      fill="rgba(0,135,98,1)"
+                    /></svg
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

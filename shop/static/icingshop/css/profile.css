@@ -1,0 +1,348 @@
+
+      @font-face {
+        src: url(../fonts/Akira\ Expanded\ Demo.otf);
+        font-family: Akira;
+      }
+
+      @font-face {
+        src: url(../fonts/stretch-pro.basic.ttf);
+        font-family: Stretch-Basic;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      ::-webkit-scrollbar {
+        background-color: transparent;
+        width: 0.5em;
+      }
+
+      ::-webkit-scrollbar-track {
+        background-color: transparent;
+        border-radius: 25px;
+        margin-block: 0.5em;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: #008762;
+        border-radius: 25px;
+      }
+
+      :root {
+        --banner-bg-color: #f7c6d1;
+        --dark-text-color: #111;
+        --light-text-color: #fff;
+        --c-dark-pink-color: #ff8aa4;
+        --c-light-pink-color: #f7c6d1;
+        --c-dark-green-color: #008762;
+        --c-light-green-color: #c0e8dd;
+        --c-light-gray-color: #d3d5ea;
+      }
+
+      ::-moz-selection {
+        /* Code for Firefox */
+        color: var(--c-dark-green-color);
+        background: var(--c-dark-pink-color);
+      }
+
+      ::selection {
+        color: var(--c-dark-green-color);
+        background: var(--c-light-pink-color);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Stretch Pro";
+        font-weight: 300;
+      }
+
+     /*  <!--------------------------------- START NAVBAR --------------------------------------------> */
+.navbar-heading {
+  text-transform: uppercase;
+}
+
+.navbar .offcanvas {
+  width: 250px;
+}
+
+.offcanvas li:hover {
+  background-color: var(--hover-pink-color);
+  border-radius: 45px !important;
+  align-self: center;
+  width: 150px;
+}
+
+.close-button {
+  width: 45px;
+  align-self: center;
+}
+
+.navbar-main {
+  text-transform: uppercase;
+  margin-top: 9em !important;
+  padding-left: 6em !important;
+  padding-right: 6em !important;
+}
+
+.navbar-brand {
+  font-family: "Stretch Pro";
+  text-transform: uppercase;
+  font-size: 1.5em !important;
+  /* margin-left: 0.2em; */
+  color: var(--light-text-color) !important;
+  /* not yet responsive */
+}
+
+.navbar-nav .nav-item a {
+  color: var(--c-dark-green-color) !important;
+  font-family: "Stretch Pro" !important;
+  text-transform: lowercase;
+}
+
+.badge {
+  font-family: "Manrope" !important;
+}
+
+.dropdown-menu {
+  position: absolute !important;
+  border-width: 0 !important;
+}
+
+.navbar .dropdown-menu > li > a,
+.dropdown-menu {
+  background-color: #fff !important;
+  color: var(--c-dark-green-color) !important;
+  font-family: "Stretch Pro" !important;
+  /* text-transform: uppercase; */
+}
+
+.navbar-toggler {
+  color: transparent;
+}
+
+.navbar-toggler svg path,
+.navbar-user .nav-item:hover svg path,
+.navbar-cart .nav-item:hover svg path {
+  transition: 0.3s ease-in-out;
+}
+
+.navbar-toggler:hover svg path,
+.navbar-user .nav-item:hover svg path,
+.navbar-cart .nav-item:hover svg path {
+  fill: var(--c-dark-green-color);
+}
+
+#CartCount {
+  position: absolute;
+  top: 2em;
+  right: 7.7em;
+  font-size: 0.5em;
+}
+
+/* 
+@media (min-width: 768px) {
+  .animate {
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1;
+  }
+
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0;
+  }
+}
+
+.slideIn {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn;
+} */
+/*  <!--------------------------------- END NAVBAR --------------------------------------------> */
+
+      /*  <!--------------------------------- START SIGN IN FORM --------------------------------------------> */
+      input:not(.form-check-input) {
+        font-family: "Manrope" !important;
+        font-weight: 700 !important;
+        text-transform: lowercase;
+        border-radius: 0.7em !important;
+        padding-top: 0.6em;
+        padding-bottom: 0.6em;
+        padding-left: 1.3em;
+        padding-right: 1.3em;
+        border-color: transparent;
+        background-color: var(--c-light-green-color);
+        color: var(--c-dark-green-color) !important;
+      }
+
+      ::placeholder {
+        font-weight: 700 !important;
+        color: var(--c-dark-green-color) !important;
+      }
+
+      :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: var(--c-dark-green-color) !important;
+      }
+
+      ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: var(--c-dark-green-color) !important;
+      }
+
+      .btn {
+        padding-top: 0.5em !important;
+        padding-bottom: 0.5em !important;
+        border-radius: 0.7em !important;
+        font-family: "Stretch Pro" !important;
+        text-transform: lowercase !important;
+        background-color: var(--c-dark-green-color) !important;
+        color: var(--light-text-color) !important;
+      }
+
+      .btn:hover {
+        background-color: var(--c-light-pink-color) !important;
+        color: var(--c-dark-green-color) !important;
+      }
+
+      .button button {
+        border-width: 7em;
+      }
+
+      .title-form {
+        font-family: "Stretch Pro";
+        text-transform: uppercase;
+        margin-top: 6em;
+        color: var(--c-dark-green-color);
+      }
+
+      .dialog-signup {
+        font-family: "Manrope";
+        font-weight: 400;
+        color: var(--c-dark-green-color);
+      }
+
+      a {
+        font-weight: 700;
+        color: var(--c-dark-green-color) !important;
+        text-decoration: none !important;
+      }
+
+      .dialog-signup a:hover {
+        color: var(--c-dark-pink-color) !important;
+      }
+
+      .form-container {
+        height: 100vh;
+      }
+
+      .form-body{
+          font-family: "Stretch-Basic";
+      }
+
+      .account-heading{
+          font-family: "Stretch-Basic";
+      }
+
+      .text-secondary{
+          font-family: "Manrope";
+      }
+
+      section{
+          width: 100%;
+          height: 100vh;
+      }
+      /*  <!--------------------------------- END SIGN IN FORM --------------------------------------------> */
+      /*  <!--------------------------------- START FOOTER --------------------------------------------> */
+      footer {
+        clear: both;
+        background-color: var(--c-light-green-color);
+        color: var(--c-dark-green-color);
+      }
+
+      .text-footer {
+        font-family: "Stretch Pro";
+        text-transform: uppercase;
+      }
+
+      .text-footer-middle {
+        font-family: "Manrope";
+      }
+
+      /*  <!--------------------------------- END FOOTER --------------------------------------------> */
+
+      /*  <!--------------------------------- MEDIA QUERIES --------------------------------------------> */
+      /* x-large */
+      @media (min-width: 1200px) {
+      }
+
+      /* large */
+      @media (min-width: 992px) and (max-width: 1199px) {
+      }
+
+      /* medium */
+      @media (min-width: 768px) and (max-width: 991px) {
+      }
+
+      /* small */
+      @media (min-width: 576px) and (max-width: 767px) {
+        .text-footer h5,
+        .text-footer-middle p,
+        .text-footer ul {
+          text-align: start !important;
+        }
+      }
+
+      /* x-small */
+      @media (max-width: 575px) {
+        .text-footer h5,
+        .text-footer-middle p,
+        .text-footer ul {
+          text-align: start !important;
+        }
+        /* 
+  .navbar .navbar-brand,
+  .navbar-nav .navbar-user,
+  .navbar-nav .navbar-cart {
+    padding: 0 !important;
+    margin: 0 !important;
+  } */
+
+        /* not yet fixed */
+        /* glaxy fold */
+      }
+    

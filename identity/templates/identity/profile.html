@@ -1,0 +1,289 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart | Freeze</title>
+
+    <!-- WEBSITE ICON -->
+    <link rel="icon" href="{% static 'icingshop/images/icon.png' %}" />
+
+    <!-- FONTS  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="http://fonts.cdnfonts.com/css/stretch-pro" rel="stylesheet" />
+
+    <!-- OUR CSS -->
+    <link rel="stylesheet" href="{% static 'icingshop/css/profile.css' %}" />
+
+    <!-- BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <!-- REMIX ICON -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <script type="text/javascript">
+		var user = '{{request.user}}'
+
+		function getToken(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken')
+
+		function getCookie(name) {
+		    // Split cookie string and get all individual name=value pairs in an array
+		    var cookieArr = document.cookie.split(";");
+
+		    // Loop through the array elements
+		    for(var i = 0; i < cookieArr.length; i++) {
+		        var cookiePair = cookieArr[i].split("=");
+
+		        /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+		        if(name == cookiePair[0].trim()) {
+		            // Decode the cookie value and return
+		            return decodeURIComponent(cookiePair[1]);
+		        }
+		    }
+
+		    // Return null if not found
+		    return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+
+		if (cart == undefined){
+			cart = {}
+			console.log('Cart Created!', cart)
+			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		}
+		console.log('Cart:', cart)
+	
+	</script>
+  
+  </head>
+  <body id="shop">
+    
+
+    <!----------------------------- START MAIN NAVBAR ---------------------------->
+    <nav class="navbar justify-content-end" style="background-color: #f5c2d1">
+      <div class="container-fluid mt-3 mb-3">
+        <a class="navbar-brand me-auto ps-4" href="{% url 'home' %}">Freeze</a>
+        <ul class="navbar-nav me-2 navbar-user">
+          <li
+            class="nav-item dropdown d-none d-lg-block d-xl-block d-xxl-block"
+          >
+            <a
+              class="nav-link"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  d="M7.39 16.539a8 8 0 1 1 9.221 0l2.083 4.76a.5.5 0 0 1-.459.701H5.765a.5.5 0 0 1-.459-.7l2.083-4.761zm.729-5.569a4.002 4.002 0 0 0 7.762 0l-1.94-.485a2 2 0 0 1-3.882 0l-1.94.485z"
+                  fill="rgba(255,255,255,1)"
+                />
+              </svg>
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end animate slideIn"
+              aria-labelledby="navbarDropdown"
+            >
+            <li>
+                  <a class="dropdown-item" style="font-size: small" href="{% url 'profile' %}"
+                    >Profile</a
+                  >
+                </li>
+              <li>
+                <a class="dropdown-item" style="font-size: small" href="#"
+                  >Orders</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  style="font-size: small"
+                  href="{% url 'logout' %}"
+                  >Sign Out</a
+                >
+              </li>
+              
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-cart">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{% url 'cart' %}"
+              id="navbarCart"
+              role="button"
+              aria-expanded="false"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  d="M4 6.414L.757 3.172l1.415-1.415L5.414 5h15.242a1 1 0 0 1 .958 1.287l-2.4 8a1 1 0 0 1-.958.713H6v2h11v2H5a1 1 0 0 1-1-1V6.414zM5.5 23a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm12 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
+                  fill="rgba(255,255,255,1)"
+                />
+              </svg>
+              <span
+                class="ms-0 mt-3 badge rounded-pill badge-info bg-danger"
+                id="CartCount"
+                >{{cartItems}}</span
+              >
+            </a>
+          </li>
+        </ul>
+
+        <!-- MOBILE TOGGLE -->
+        <button
+          class="navbar-toggler me-2"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path
+              d="M3 3h8v8H3V3zm0 10h8v8H3v-8zM13 3h8v8h-8V3zm0 10h8v8h-8v-8z"
+              fill="rgba(255,255,255,1)"
+            />
+          </svg>
+        </button>
+
+        <!-- MENU LIST -->
+        <div class="offcanvas offcanvas-end text-center" id="navbarNav">
+          <ul class="offcanvas-body navbar-nav">
+            <button
+              class="close-button btn btn-default btn-sm shadow-none mt-5"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-11.414L9.172 7.757 7.757 9.172 10.586 12l-2.829 2.828 1.415 1.415L12 13.414l2.828 2.829 1.415-1.415L13.414 12l2.829-2.828-1.415-1.415L12 10.586z"
+                  fill="rgba(242,217,209,1)"
+                />
+              </svg>
+            </button>
+            <div class="my-4"></div>
+            <li class="nav-item">
+              <a
+                class="nav-link active text-center"
+                aria-current="page"
+                href="{% url 'home' %}"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link" href="{% url 'shop' %}">Shop</a>
+            </li>
+            {% comment %} <li class="nav-item text-center">
+              <a class="nav-link" href="#">About</a>
+            </li> {% endcomment %}
+            <li
+              class="nav-item text-center d-block d-xxl-none d-xl-none d-lg-none"
+            >
+              <a class="nav-link" href="#">Orders</a>
+            </li>
+
+            <li
+              class="nav-item text-center mt-5 d-block d-xxl-none d-xl-none d-lg-none"
+            >
+              <a class="nav-link" href="../pages/signin.html">Sign in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!----------------------------- END MAIN NAVBAR ---------------------------->
+
+    <section class="justify-content-center align-item-center">
+    <div class="container mt-5">
+     <div class="content-section">
+      <div class="media text-center">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body text-center">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      
+    
+      <form class="container form-body w-50" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="mb-5 text-center">Profile Info</legend>
+              <div class="text-start">{{ u_form|crispy }}</div>
+              <div class="text-start mb-5">{{ p_form|crispy }}</div>
+          </fieldset>
+          <div class="form-group text-center">
+              <button class="btn btn-outline-info" type="submit">Update</button>
+          </div>
+      </form>
+    </div>
+    </section>
+
+    
+    <!--------------------------------- SCRIPT BOOTSTRAP -------------------------------------------->
+  <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+  
+  </body>
+</html>
